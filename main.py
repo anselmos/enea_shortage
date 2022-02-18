@@ -1,7 +1,6 @@
 import requests
 import sys, getopt
-
-ENEA_SHORTAGE_LINK = "http://www.wylaczenia-eneaoperator.pl/page_print.php?rejon=17"
+import ENEA_SHORTAGE_LINK from constants
 
 def get_outage_page():
     return requests.get(ENEA_SHORTAGE_LINK)
