@@ -1,6 +1,6 @@
 import requests
 import sys, getopt
-import ENEA_SHORTAGE_LINK from constants
+from constants import ENEA_SHORTAGE_LINK
 
 def get_outage_page():
     return requests.get(ENEA_SHORTAGE_LINK)

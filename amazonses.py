@@ -1,7 +1,7 @@
 import boto3
 from botocore.exceptions import ClientError
 
-import ENEA_SHORTAGE_LINK from constants
+from constants import ENEA_SHORTAGE_LINK
 
 def send_email(SENDER, RECIPIENT, shortages_dict):
     # Specify a configuration set. If you do not want to use a configuration
