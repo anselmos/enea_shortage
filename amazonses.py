@@ -11,21 +11,25 @@ def send_email(SENDER, RECIPIENT, shortages_dict):
     # If necessary, replace us-west-2 with the AWS Region you're using for Amazon SES.
     AWS_REGION = "eu-central-1"
     # The subject line for the email.
-    SUBJECT = "ENEA POWER SHORTAGE ALERT!"
+    SUBJECT = "Enea Power Shortage Alert."
     # The email body for recipients with non-HTML email clients.
     shortage_text = ""
+    streets_alert = ""
     for street, shortage in shortages_dict.items():
-        if shortage:
-            shortage_text += f"{street},"
+        streets_alert += f"{street}, "
+        if isinstance(shortage, list):
+            for date_shortage_dict in shortage:
+                shortage_text += f"<p>Date: {date_shortage_dict['date']}," \
+                                 f" Location: {date_shortage_dict['localisation']}</p></br>"
 
-    BODY_TEXT = (f"ENEA POWER SHORTAGE FOR: \r\n {shortage_text}")
+    BODY_TEXT = (f"Enea Power Shortage Alert For: \r\n {streets_alert}")
 
     # The HTML body of the email.
     BODY_HTML = f"""<html>
     <head></head>
     <body>
         {shortage_text}
-        <a href={ENEA_SHORTAGE_LINK}>CHECK SHORTAGES! </a>
+        <a href={ENEA_SHORTAGE_LINK}>Check ! </a>
     </body>
     </html>
                 """
